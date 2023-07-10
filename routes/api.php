@@ -37,3 +37,9 @@ Route::middleware('auth.apikey')->post('/search', [Main::class, 'search'], funct
 Route::get('/search', function () {
     return response()->json(['status' => array("code" => "405", "message" => "Wrong method!")], 403);
 });
+
+// Cari faskes terdekat
+Route::middleware('auth.apikey')->post('/closest', [Main::class, 'closest'], function () {});
+Route::get('/closest', function () {
+    return response()->json(['status' => array("code" => "405", "message" => "Wrong method!")], 403);
+});

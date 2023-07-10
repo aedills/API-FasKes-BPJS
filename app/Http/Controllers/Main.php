@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use stdClass;
 use App\Models\GetData;
 use App\Models\SearchData;
+use App\Models\CloseFaskes;
 
 class Main extends Controller
 {
@@ -106,5 +107,38 @@ class Main extends Controller
             "result" => $result
         ];
         return response()->json($data, 200);
+    }
+
+    public function closest(Request $request){
+        $cls = new CloseFaskes();
+        $data = new stdClass();
+
+        $lat = $request->input('lat');
+        $long = $request->input('long');
+
+        $count = $request->input('count');
+        if(!isset($count) OR $count <= 0){
+            $count = 10;
+        }
+
+        if((!isset($lat) OR $lat == '') OR (!isset($long) OR $long == '')){
+            $data = [
+                "status" => array(
+                    "code" => 400,
+                    "message" => "Please provide the required data!"
+                )
+            ];
+            return response()->json($data, 400);
+        }else{
+            $result = $cls->getClosest($lat, $long, $count);
+            $data = [
+                "status" => array(
+                    "code" => 200,
+                    "message" => "Success"
+                ),
+                "result" => $result
+            ];
+            return response()->json($data, 200);
+        }
     }
 }
