@@ -8,6 +8,7 @@ use stdClass;
 
 class GetData extends Model
 {
+    use HasFactory;
     public function getAllData($rand)
     {
         $dentist = $this->select('code', 'name', 'address', 'phone', 'coordinates')->from('data_dentist')->inRandomOrder()->get();

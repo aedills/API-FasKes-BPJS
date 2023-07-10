@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use stdClass;
 use App\Models\GetData;
+use App\Models\SearchData;
 
 class Main extends Controller
 {
@@ -40,17 +41,17 @@ class Main extends Controller
             ),
             "result" => $result
         ];
-        
+
         return response()->json($data, 200);
     }
-    
-    public function getDetail(Request $request){
-        // 
+
+    public function getDetail(Request $request)
+    {
         $GetData = new GetData();
         $data = new stdClass();
 
         $code = $request->input('code');
-        if(!isset($code) OR $code == ''){
+        if (!isset($code) or $code == '') {
             $data = [
                 "status" => array(
                     "code" => 400,
@@ -58,7 +59,7 @@ class Main extends Controller
                 )
             ];
             return response()->json($data, 400);
-        }else{
+        } else {
             $result = $GetData->getDetail($code);
             $data = [
                 "status" => array(
@@ -69,5 +70,41 @@ class Main extends Controller
             ];
             return response()->json($data, 200);
         }
+    }
+
+    public function search(Request $request)
+    {
+        $Search = new SearchData();
+
+        $cat = explode(';', $request->input('category'));
+
+        $limit = $request->input('limit');
+        if (!isset($limit) or $limit <= 0) {
+            $limit = 0; 
+        }
+
+        $q = $request->input('q');
+        if (!isset($q) or $q == '') {
+            $data = [
+                "status" => array(
+                    "code" => 400,
+                    "message" => "Please provide search query"
+                )
+            ];
+            return response()->json($data, 400);
+        }
+
+        // return array("q" => $q, "limit" => $limit, "cat" => $cat);
+
+
+        $result = $Search->search($q, $limit, $cat);
+        $data = [
+            "status" => array(
+                "code" => 200,
+                "message" => "Success"
+            ),
+            "result" => $result
+        ];
+        return response()->json($data, 200);
     }
 }

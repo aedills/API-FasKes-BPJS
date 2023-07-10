@@ -33,7 +33,7 @@ Route::get('/getDetail', function () {
 });
 
 // Pencarian FasKes
-Route::middleware('auth.apikey')->post('/searchFasKes', [Main::class, 'search'], function () {});
-Route::get('/searchFasKes', function () {
+Route::middleware('auth.apikey')->post('/search', [Main::class, 'search'], function () {});
+Route::get('/search', function () {
     return response()->json(['status' => array("code" => "405", "message" => "Wrong method!")], 403);
 });
