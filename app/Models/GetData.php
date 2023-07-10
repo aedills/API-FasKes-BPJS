@@ -129,6 +129,9 @@ class GetData extends Model
 
         $data = new stdClass();
         $data = $dentist->union($hospital)->union($optical)->union($pharmacy)->union($practicing_doctor)->union($pratama_clinic)->union($utama_clinic)->union($public_health_center);
+        if(count($data) <= 0){
+            $data = array('No data found!');
+        }
         return $data;
     }
 

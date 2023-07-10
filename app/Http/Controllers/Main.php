@@ -60,7 +60,6 @@ class Main extends Controller
             return response()->json($data, 400);
         }else{
             $result = $GetData->getDetail($code);
-            
             $data = [
                 "status" => array(
                     "code" => 200,
