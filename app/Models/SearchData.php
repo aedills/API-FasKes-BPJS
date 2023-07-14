@@ -11,14 +11,14 @@ class SearchData extends Model
     use HasFactory;
     public function Search($q, $limit, $cat)
     {
-        $dentist = $this->select('code', 'name', 'address', 'phone', 'coordinates')->from('data_dentist');
-        $hospital = $this->select('code', 'name', 'address', 'phone', 'coordinates')->from('data_hospital');
-        $optical = $this->select('code', 'name', 'address', 'phone', 'coordinates')->from('data_optical');
-        $pharmacy = $this->select('code', 'name', 'address', 'phone', 'coordinates')->from('data_pharmacy');
-        $practicing_doctor = $this->select('code', 'name', 'address', 'phone', 'coordinates')->from('data_practicing_doctor');
-        $pratama_clinic = $this->select('code', 'name', 'address', 'phone', 'coordinates')->from('data_pratama_clinic');
-        $utama_clinic = $this->select('code', 'name', 'address', 'phone', 'coordinates')->from('data_utama_clinic');
-        $public_health_center = $this->select('code', 'name', 'address', 'phone', 'coordinates')->from('data_public_health_center');
+        $dentist = $this->select('code', 'name', 'address', 'phone', 'coordinates')->from('data_dentist')->where('name', 'LIKE', '%'.$q.'%');
+        $hospital = $this->select('code', 'name', 'address', 'phone', 'coordinates')->from('data_hospital')->where('name', 'LIKE', '%'.$q.'%');
+        $optical = $this->select('code', 'name', 'address', 'phone', 'coordinates')->from('data_optical')->where('name', 'LIKE', '%'.$q.'%');
+        $pharmacy = $this->select('code', 'name', 'address', 'phone', 'coordinates')->from('data_pharmacy')->where('name', 'LIKE', '%'.$q.'%');
+        $practicing_doctor = $this->select('code', 'name', 'address', 'phone', 'coordinates')->from('data_practicing_doctor')->where('name', 'LIKE', '%'.$q.'%');
+        $pratama_clinic = $this->select('code', 'name', 'address', 'phone', 'coordinates')->from('data_pratama_clinic')->where('name', 'LIKE', '%'.$q.'%');
+        $utama_clinic = $this->select('code', 'name', 'address', 'phone', 'coordinates')->from('data_utama_clinic')->where('name', 'LIKE', '%'.$q.'%');
+        $public_health_center = $this->select('code', 'name', 'address', 'phone', 'coordinates')->from('data_public_health_center')->where('name', 'LIKE', '%'.$q.'%');
 
         if ($limit > 0) {
             $dentist->limit($limit);
@@ -32,44 +32,44 @@ class SearchData extends Model
         }
 
         $data = new stdClass();
-        if ($cat[0] != '') {
+        if ($cat[0] != '' OR !isset($cat)) {
             if (in_array('dentist', $cat)) {
-                $dentist = $dentist->get();
+                $data->dentist = $dentist->get();
             }
             if (in_array('hospital', $cat)) {
-                $hospital = $hospital->get();
+                $data->hospital = $hospital->get();
             }
             if (in_array('optical', $cat)) {
-                $optical = $optical->get();
+                $data->optical = $optical->get();
             }
             if (in_array('pharmacy', $cat)) {
-                $pharmacy = $pharmacy->get();
+                $data->pharmacy = $pharmacy->get();
             }
             if (in_array('practicing_doctor', $cat)) {
-                $practicing_doctor = $practicing_doctor->get();
+                $data->practicing_doctor = $practicing_doctor->get();
             }
             if (in_array('utama_clinic', $cat)) {
-                $utama_clinic = $utama_clinic->get();
+                $data->utama_clinic = $utama_clinic->get();
             }
             if (in_array('public_health_center', $cat)) {
-                $public_health_center = $public_health_center->get();
+                $data->public_health_center = $public_health_center->get();
             }
             if (in_array('pratama_clinic', $cat)) {
-                $pratama_clinic = $pratama_clinic->get();
+                $data->pratama_clinic = $pratama_clinic->get();
             }
         } else {
-            $dentist = $dentist->get();
-            $hospital = $hospital->get();
-            $optical = $optical->get();
-            $pharmacy = $pharmacy->get();
-            $practicing_doctor = $practicing_doctor->get();
-            $utama_clinic = $utama_clinic->get();
-            $public_health_center = $public_health_center->get();
-            $pratama_clinic = $pratama_clinic->get();
+            $data->dentist = $dentist->get();
+            $data->hospital = $hospital->get();
+            $data->optical = $optical->get();
+            $data->pharmacy = $pharmacy->get();
+            $data->practicing_doctor = $practicing_doctor->get();
+            $data->utama_clinic = $utama_clinic->get();
+            $data->public_health_center = $public_health_center->get();
+            $data->pratama_clinic = $pratama_clinic->get();
         }
 
         // if (count((array)$dentist) > 0) {
-            $data->dentist = $dentist;
+        //     $data->dentist = $dentist;
         // }
         // if (count($hospital) > 0) {
         //     $data->hospital = $hospital;

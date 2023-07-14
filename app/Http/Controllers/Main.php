@@ -7,11 +7,12 @@ use stdClass;
 use App\Models\GetData;
 use App\Models\SearchData;
 use App\Models\CloseFaskes;
+use App\Models\Users;
 
 class Main extends Controller
 {
     public function getData(Request $request)
-    {
+    {        
         $GetData = new GetData();
 
         $rand = $request->input('rand');
