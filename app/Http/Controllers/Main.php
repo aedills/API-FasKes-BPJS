@@ -2,23 +2,40 @@
 
 namespace App\Http\Controllers;
 
-use App\Views\Composers\MultiComposer;
-use Illuminate\Support\Facades\View;
+use App\Models\Auth;
 use Illuminate\Http\Request;
+use stdClass;
 
 class Main extends Controller
 {
     public function home(Request $request)
     {
-
-        $data = array();
-        // return view(['component.head', 'component.foot'], compact($data1, $data2));
-        // return view('component/head', $data1)->with('home')->with('component/foot', $data2);
-        return view('home', $data);
-
+        return view('home');
     }
 
-    public function login(){
+    public function login()
+    {
         return view('auth.login');
+    }
+
+    public function loginRun(Request $request)
+    {
+        $auth = new Auth();
+
+        $credentials = array(
+            "email" => $request->input('email'),
+            "p" => $request->input('p')
+        );
+        if ($request->input('email') && $request->input('p')) {
+            if ($auth->in($credentials) == true) {
+                return redirect('/');
+            }
+            else{
+                return redirect('/login');
+            }
+        }
+        else{
+            return redirect('/login');
+        }
     }
 }

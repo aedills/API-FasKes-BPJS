@@ -21,25 +21,25 @@ use App\Http\Controllers\Api;
 // });
 
 // Ambil daftar FasKes
-Route::middleware('auth.apikey')->post('/getListFaskes', [Api::class, 'getData'], function () {});
+Route::middleware('auth.apikey')->post('/getListFaskes', [Api::class, 'getData']);
 Route::get('/getListFaskes', function () {
     return response()->json(['status' => array("code" => "405", "message" => "Wrong method!")], 403);
 });
 
 // Ambil detail dari Faskes
-Route::middleware('auth.apikey')->post('/getDetail', [Api::class, 'getDetail'], function () {});
+Route::middleware('auth.apikey')->post('/getDetail', [Api::class, 'getDetail']);
 Route::get('/getDetail', function () {
     return response()->json(['status' => array("code" => "405", "message" => "Wrong method!")], 403);
 });
 
 // Pencarian FasKes
-Route::middleware('auth.apikey')->post('/search', [Api::class, 'search'], function () {});
+Route::middleware('auth.apikey')->post('/search', [Api::class, 'search']);
 Route::get('/search', function () {
     return response()->json(['status' => array("code" => "405", "message" => "Wrong method!")], 403);
 });
 
 // Cari faskes terdekat
-Route::middleware('auth.apikey')->post('/closest', [Api::class, 'closest'], function () {});
+Route::middleware('auth.apikey')->post('/closest', [Api::class, 'closest']);
 Route::get('/closest', function () {
     return response()->json(['status' => array("code" => "405", "message" => "Wrong method!")], 403);
 });

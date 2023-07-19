@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [Main::class, 'home'], function () {});
+Route::get('/', [Main::class, 'home']);
 
-Route::get('/login', [Main::class, 'login'], function () {});
+Route::get('/login', [Main::class, 'login']);
+
+Route::get('/doLogin', [Main::class, 'loginRun']);
+Route::post('/doLogin', function () {
+    return redirect('/login');
+});
