@@ -15,21 +15,33 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Main Page Route
 Route::get('/', [Main::class, 'home']);
 Route::get('/home', [Main::class, 'home']);
 Route::get('/apikey', [Main::class, 'key']);
 Route::get('/documentation', [Main::class, 'doc']);
 
 
-
-Route::get('/login', [Main::class, 'login']);
-Route::get('/logout', [Main::class, 'logout']);
-
+// Login Route
+Route::get('/login', function(){
+    return view('auth.login');
+});
 Route::get('/doLogin', [Main::class, 'loginRun']);
 Route::post('/doLogin', function () {
     return redirect('/login');
 });
 
+// Regist Route
+Route::get('/regist', function(){
+    return view('auth.regist');
+});
+Route::get('/reg', [Main::class, 'reg']);
+Route::post('/reg', function () {
+    return redirect('/regist');
+});
+
+// Logout Route
+Route::get('/logout', [Main::class, 'logout']);
 
 
 

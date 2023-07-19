@@ -35,11 +35,7 @@ class Main extends Controller
         return view('endpoint', $data); 
     }
 
-    public function login()
-    {
-        return view('auth.login');
-    }
-
+    // Login
     public function loginRun(Request $request)
     {
         $auth = new Auth();
@@ -61,8 +57,37 @@ class Main extends Controller
         }
     }
     
+    // Login
     public function logout(Request $request){
         $request->session()->forget('auth_data');
         return redirect('/login');
+    }
+
+    // Registrasi
+    public function reg(Request $request){
+        $auth = new Auth();
+
+        $nama = $request->input('nama');
+        $email = $request->input('email');
+        $p1 = $request->input('pA');
+        $p2 = $request->input('pB');
+
+        if($p1 != $p2){
+            return redirect('/regist');
+        }
+        else{
+            if($email){
+                $status = $auth->registration($nama, $email, $p2, $request);
+                if($status == true){
+                    return redirect('/home');
+                }
+                else{
+                    return redirect('/regist');
+                }
+            }
+            else{
+                return redirect('/regist');
+            }
+        }
     }
 }

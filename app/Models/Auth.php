@@ -21,4 +21,34 @@ class Auth extends Model
             return false;
         }
     }
+
+    public function registration($nama, $email, $p, Request $request){
+        $pass = password_hash($p, PASSWORD_DEFAULT);
+        $key = $this->createKey($nama, $p);
+        $data = array(
+            'username' => $nama,
+            'email' => $email,
+            'p4ssword' => $pass,
+            'k3y' => $key
+        );
+
+        DB::table('users')->insert($data);
+
+        $user = DB::table('users')->where('email', $email)->first();
+        if($user && Hash::check($p, $user->p4ssword)){
+            $request->session()->put('auth_data', $user);
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    protected function createKey($x, $y){
+        $seed = $y.$x;
+        $raw = md5($seed);
+        $rand = bin2hex(random_bytes(16));
+        $key = substr($raw, 0, 32) . $rand;
+        return substr($key, 0, 32);
+    }
 }

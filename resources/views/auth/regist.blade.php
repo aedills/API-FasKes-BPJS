@@ -8,11 +8,17 @@
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100">
-            <form action="{{ url('doLogin') }}" method="GET" class="login100-form validate-form">
+            <form action="{{ url('reg') }}" method="GET" class="login100-form validate-form">
                 <span class="login100-form-title p-b-43">
-                    Masuk untuk mendapatkan akses
+                    Daftarkan Diri Anda
                 </span>
 
+
+                <div class="wrap-input100 " data-validate="Anda perlu memasukkan Nama">
+                    <input class="input100" type="text" name="nama">
+                    <span class="focus-input100"></span>
+                    <span class="label-input100">Nama</span>
+                </div>
 
                 <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
                     <input class="input100" type="text" name="email">
@@ -20,31 +26,34 @@
                     <span class="label-input100">Email</span>
                 </div>
 
+                <div class="wrap-input100 validate-input" data-validate="Password is required">
+                    <input class="input100" type="password" name="pA" id="p1" onchange="passCheck()">
+                    <span class="focus-input100"></span>
+                    <span class="label-input100">Buat Password</span>
+                </div>
 
                 <div class="wrap-input100 validate-input" data-validate="Password is required">
-                    <input class="input100" type="password" name="p">
+                    <input class="input100" type="password" name="pB" id="p2" onchange="passCheck()">
                     <span class="focus-input100"></span>
-                    <span class="label-input100">Password</span>
+                    <span class="label-input100">Konfirmasi Password</span>
                 </div>
 
                 <div class="flex-sb-m w-full p-t-3 p-b-32">
                     <div class="contact100-form-checkbox" style="padding-left: 4px;">
-                        <a href="{{url('/regist')}}" class="txt1" style="padding-right: 4px;">
-                            Belum memiliki akun?
-                        </a>
+
                     </div>
 
                     <div>
-                        <a href="#" class="txt1" style="padding-right: 4px;">
-                            Lupa sandi Anda?
+                        <a href="{{url('/login')}}" class="txt1" style="padding-right: 4px;">
+                            Sudah punya akun?
                         </a>
                     </div>
                 </div>
 
 
                 <div class="container-login100-form-btn" style="padding: 2px;">
-                    <button class="login100-form-btn">
-                        Masuk
+                    <button class="login100-form-btn" disabled id="daftar">
+                        Daftar
                     </button>
                 </div>
             </form>
@@ -55,7 +64,29 @@
     </div>
 </div>
 
+<script>
+    var inA = document.getElementById("p1");
+    var inB = document.getElementById("p2");
+    var save = document.getElementById("daftar");
 
+    inA.addEventListener("input", passCheck);
+    inB.addEventListener("input", passCheck);
+
+    function passCheck() {
+        var p1 = inA.value;
+        var p2 = inB.value;
+
+        if (p1 === p2) {
+            if (p1 != '' || p2 != '') {
+                save.removeAttribute("disabled");
+            } else {
+                save.setAttribute("disabled", "disabled");
+            }
+        } else {
+            save.setAttribute("disabled", "disabled");
+        }
+    }
+</script>
 
 
 
