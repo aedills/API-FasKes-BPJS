@@ -59,20 +59,37 @@
 <div class="page">
     <!-- NavBar -->
     <section id="toc" class="docs-toc docs-toc--desktop side-navbar">
-
         @include('component.navbar_section')
-
+        <ul>
+            <li>
+                <a href="#root-view" onclick="getDoc('getListFaskes')">../api/getListFaskes</a>
+            </li>
+            <li>
+                <a href="#root-view" onclick="getDoc('search')">../api/search</a>
+            </li>
+            <li>
+                <a href="#root-view" onclick="getDoc('closest')">../api/closest</a>
+            </li>
+            <li>
+                <a href="#root-view" onclick="getDoc('getDetail')">../api/getDetail</a>
+            </li>
+        </ul>
     </section>
-
 
     <div class="data-root" id="root-view">
         <section class="docs-content docs-content--2-col">
-            <!-- Docs Section -->
             <div class="docs-section docs-section--title">
                 <div class="docs-description">
-                    <h1 style="color: #6675DF">Introduction</h1>
-                    <p><strong>BPJS API</strong> ini merupakan API yang menyediakan akses data <strong>seluruh Fasilitas Kesehatan</strong> yang bekerja sama dengan BPJS yang ada di <strong>Makassar</strong>.</p>
-                    <p>API ini membantu anda dalam mencari fasilitas kesehatan seperti rumah sakit, puskesmas, dokter gigi, dokter praktik, klinik pratama, klinik utama, optik dan apotek.</p>
+                    <h1 style="color: #6675DF">Documentation</h1>
+                    <p>
+                        API FasKes BPJS Makassar ini menyediakan empat endpoint dengan fungsi masing-masing yang dapat di integrasikan di setiap aplikasi mobile ataupun web.
+                        Setiap endpoint mengirimkan respon data dengan bentuk json sehingga memudahkan pada developer untuk mengintegrasikan ke platform manapun.
+                    </p>
+                    <br>
+                    @if(!isset($data->id))
+                    <h4>Anda memerlukan API Key untuk memperoleh akses ke API..</h4>
+                    <h3>Login untuk mendapatkan API Key</h3>
+                    @endif
                 </div>
             </div>
         </section>
@@ -80,35 +97,24 @@
 
 </div>
 
-
 @include('component.navbar_footer')
-
 
 <script src="https://www.google.com/recaptcha/api.js?onload=loadRecaptcha&render=explicit" async defer></script>
 <script src="https://postmarkapp.com/dist/js/developerDocs.b2b6ab461eef5e7e0b55.js"></script>
 
 <script>
-    function toggle() {
-        var image = document.getElementById('show-hide');
-        var key_value = document.getElementById('key-value');
-        // const button = document.getElementById('show-hide-but');
+    function getDoc(endpoint) {
+        var url = "http://127.0.0.20:8866/ajax/doc?end="+endpoint;
 
-        const show = 'http://127.0.0.20:8866/images/icon/show.png';
-        const hide = 'http://127.0.0.20:8866/images/icon/hide.png';
-
-        if (image.src == show) {
-            image.removeAttribute('src')
-            image.setAttribute('src', hide)
-
-            key_value.removeAttribute('type')
-            key_value.setAttribute('type', 'password')
-        } else {
-            image.removeAttribute('src')
-            image.setAttribute('src', show)
-
-            key_value.removeAttribute('type')
-            key_value.setAttribute('type', 'text')
+        var req = new XMLHttpRequest();
+        req.open('GET', url, true);
+        // req.responseType = 'document';
+        req.onload = function() {
+            var target = document.getElementById('root-view');
+            target.innerHTML = req.response;
         }
+        req.send();
     }
 </script>
+
 @include('component.foot')

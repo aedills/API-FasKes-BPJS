@@ -59,20 +59,29 @@
 <div class="page">
     <!-- NavBar -->
     <section id="toc" class="docs-toc docs-toc--desktop side-navbar">
-
         @include('component.navbar_section')
-
     </section>
-
 
     <div class="data-root" id="root-view">
         <section class="docs-content docs-content--2-col">
             <!-- Docs Section -->
             <div class="docs-section docs-section--title">
                 <div class="docs-description">
-                    <h1 style="color: #6675DF">Introduction</h1>
-                    <p><strong>BPJS API</strong> ini merupakan API yang menyediakan akses data <strong>seluruh Fasilitas Kesehatan</strong> yang bekerja sama dengan BPJS yang ada di <strong>Makassar</strong>.</p>
-                    <p>API ini membantu anda dalam mencari fasilitas kesehatan seperti rumah sakit, puskesmas, dokter gigi, dokter praktik, klinik pratama, klinik utama, optik dan apotek.</p>
+                    <h1 style="color: #6675DF">API Key</h1>
+                    <p>Anda dapat menggunakan API Key ini untuk mengakses API dari FasKes BPJS kota Makassar.</p>
+                    <p>Jika Anda merasa API Key diketahui dan digunakan oleh orang lain, maka silahkan ganti API Key Anda.</p>
+                    <br>
+                    @if(isset($data->id))
+                    <h3>API Key Anda</h3>
+                    <form>
+                        <div class="input-group input-group-sm" id="key-form" style="width: 500px;">
+                            <input type="password" id="key-value" class="form-control" value="{{$data->k3y}}" disabled style="font-size: 14pt; padding-left: 20px;">
+                            <span class="input-group-text"><button type="button" style="border: none; background: transparent;" onclick="toggle()"><img class="show-hide-icon" style="border-radius: 20%;" id="show-hide" src="{{url('images/icon/hide.png')}}" alt="SHOW"></button></i></span>
+                        </div>
+                    </form>
+                    @else
+                    <h3>Login untuk mendapatkan API Key</h3>
+                    @endif
                 </div>
             </div>
         </section>
@@ -80,9 +89,7 @@
 
 </div>
 
-
 @include('component.navbar_footer')
-
 
 <script src="https://www.google.com/recaptcha/api.js?onload=loadRecaptcha&render=explicit" async defer></script>
 <script src="https://postmarkapp.com/dist/js/developerDocs.b2b6ab461eef5e7e0b55.js"></script>
