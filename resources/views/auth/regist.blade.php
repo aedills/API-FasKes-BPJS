@@ -1,4 +1,4 @@
-@include('component.head', ['title' => 'Login | FasKes Makassar'])
+@include('component.head', ['title' => 'Registration | API FasKes Makassar'])
 
 <link rel="stylesheet" type="text/css" href="{{ url('assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ url('assets/fonts/Linearicons-Free-v1.0.0/icon-font.min.css') }}">

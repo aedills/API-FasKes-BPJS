@@ -1,4 +1,4 @@
-@include('component.head', ['title' => 'halo'])
+@include('component.head', ['title' => 'Documentation | API FasKes Makassar'])
 
 <!-- <div class="root"></div> -->
 <link href="https://postmarkapp.com/dist/css/core.41adffa0f4ce990a6ef7.css" rel="stylesheet">

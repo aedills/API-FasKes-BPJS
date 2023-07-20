@@ -51,4 +51,4 @@ Route::get('/logout', [Main::class, 'logout']);
 
 
 // AJAX Route
-Route::get('/ajax/doc', [Ajax::class, 'doc']);
+// Route::get('/ajax/doc', [Ajax::class, 'doc']);
