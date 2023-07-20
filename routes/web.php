@@ -20,6 +20,9 @@ Route::get('/', [Main::class, 'home']);
 Route::get('/home', [Main::class, 'home']);
 Route::get('/apikey', [Main::class, 'key']);
 Route::get('/documentation', [Main::class, 'doc']);
+Route::get('/endpoint', function() {
+    return view('endpoint-sub');
+});
 
 
 // Login Route

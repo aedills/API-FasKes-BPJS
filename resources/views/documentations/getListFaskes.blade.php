@@ -74,7 +74,7 @@
             </p>
 
             <h3 style="color: #6675DF">Contoh Request</h3>
-            <script src="https://gist.github.com/aedills/4bcc9b7a8f99cffa9ca53613fd25fad9.js"></script>
+            <script src="https://gist.github.com/aedills/4bcc9b7a8f99cffa9ca53613fd25fad9.js" async defer></script>
         </div>
     </div>
 

@@ -60,20 +60,6 @@
     <!-- NavBar -->
     <section id="toc" class="docs-toc docs-toc--desktop side-navbar">
         @include('component.navbar_section')
-        <ul>
-            <li>
-                <a href="#root-view" onclick="getDoc('getListFaskes')">../api/getListFaskes</a>
-            </li>
-            <li>
-                <a href="#root-view" onclick="getDoc('search')">../api/search</a>
-            </li>
-            <li>
-                <a href="#root-view" onclick="getDoc('closest')">../api/closest</a>
-            </li>
-            <li>
-                <a href="#root-view" onclick="getDoc('getDetail')">../api/getDetail</a>
-            </li>
-        </ul>
     </section>
 
     <div class="data-root" id="root-view">
@@ -101,20 +87,5 @@
 
 <script src="https://www.google.com/recaptcha/api.js?onload=loadRecaptcha&render=explicit" async defer></script>
 <script src="https://postmarkapp.com/dist/js/developerDocs.b2b6ab461eef5e7e0b55.js"></script>
-
-<script>
-    function getDoc(endpoint) {
-        var url = "http://127.0.0.20:8866/ajax/doc?end="+endpoint;
-
-        var req = new XMLHttpRequest();
-        req.open('GET', url, true);
-        // req.responseType = 'document';
-        req.onload = function() {
-            var target = document.getElementById('root-view');
-            target.innerHTML = req.response;
-        }
-        req.send();
-    }
-</script>
 
 @include('component.foot')
