@@ -68,7 +68,6 @@ class Kernel extends HttpKernel
         // Custom Kernel
         'auth.apikey' => \App\Http\Middleware\ApiKeyAuthentication::class,
         'web' => [
-            // Other middleware...
             \App\Http\Middleware\VerifyCsrfToken::class,
         ],
     ];

@@ -298,7 +298,7 @@
                                 <td>&nbsp;&nbsp;Longitude posisi yang akan menjadi patokan<br>&nbsp;&nbsp;pencarian faskes terdekat.</td>
                             </tr>
                             <tr>
-                                <td>&nbsp;&nbsp;limit</td>
+                                <td>&nbsp;&nbsp;count</td>
                                 <td>&nbsp;&nbsp;form-data</td>
                                 <td>&nbsp;&nbsp;Integer Value</td>
                                 <td>&nbsp;&nbsp;Opsional</td>

@@ -78,7 +78,6 @@ class Api extends Controller
         $Search = new SearchData();
 
         $cat = explode(';', $request->input('category'));
-        $search_by = $request->input('by');
 
         $limit = $request->input('limit');
         if (!isset($limit) or $limit <= 0) {
@@ -98,7 +97,7 @@ class Api extends Controller
 
         // return array("q" => $q, "limit" => $limit, "cat" => $cat);
 
-        $result = $Search->search($q, $limit, $cat, $search_by);
+        $result = $Search->search($q, $limit, $cat);
         $data = [
             "status" => array(
                 "code" => 200,
