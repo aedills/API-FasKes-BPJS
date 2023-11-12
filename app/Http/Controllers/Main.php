@@ -9,8 +9,7 @@ use stdClass;
 
 class Main extends Controller
 {
-    public function home(Request $request)
-    {
+    public function home(Request $request){
         $data = new stdClass();
         $data = [
             'data' => $request->session()->get('auth_data')
@@ -18,8 +17,7 @@ class Main extends Controller
         return view('home', $data);
     }
 
-    public function key(Request $request)
-    {
+    public function key(Request $request){
         $data = new stdClass();
         $data = [
             'data' => $request->session()->get('auth_data')
@@ -36,8 +34,7 @@ class Main extends Controller
     }
 
     // Login
-    public function loginRun(Request $request)
-    {
+    public function loginRun(Request $request){
         $auth = new Auth();
 
         $credentials = array(
